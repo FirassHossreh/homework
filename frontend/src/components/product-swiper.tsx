@@ -1,10 +1,8 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-import type { ProductType } from '../types/product';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import Product from './product';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import type { ProductType } from "../types/product";
+import "swiper/swiper-bundle.css";
+import Product from "./product";
 type ProductSliderProps = {
   Products: ProductType[];
 };
@@ -29,7 +27,7 @@ export default function ProductSwiper({ Products }: ProductSliderProps) {
       {Products.map((product, index) => {
         return (
           <SwiperSlide key={index}>
-            <Product product={product} index={index} />
+            <Product product={product} />
           </SwiperSlide>
         );
       })}

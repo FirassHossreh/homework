@@ -1,24 +1,23 @@
-import { useState } from 'react';
-import type { ProductType } from '../types/product';
-import StartsRating from './starts-rating';
+import { useState } from "react";
+import type { ProductType } from "../types/product";
+import StartsRating from "./starts-rating";
 
 type ProductProps = {
   product: ProductType;
-  index: number;
 };
 type ColorKey = {
-  name: 'white' | 'rose' | 'yellow';
+  name: "white" | "rose" | "yellow";
   color: string;
   description: string;
 };
 
 const colorKeys = [
-  { name: 'yellow', color: '#E6CA97', description: 'Yellow' },
-  { name: 'rose', color: '#E1A4A9', description: 'rose' },
-  { name: 'white', color: '#D9D9D9', description: 'white' },
+  { name: "yellow", color: "#E6CA97", description: "Yellow" },
+  { name: "rose", color: "#E1A4A9", description: "rose" },
+  { name: "white", color: "#D9D9D9", description: "white" },
 ] as const;
 
-export default function Product({ product, index }: ProductProps) {
+export default function Product({ product }: ProductProps) {
   const [selectedColor, setSelectedColor] = useState<ColorKey>(colorKeys[0]);
 
   const handleColorSelect = (color: ColorKey) => {
@@ -36,16 +35,21 @@ export default function Product({ product, index }: ProductProps) {
         <h3 className="text-lg font-Montserat font-medium text-[15px] mt-2 font-montserrat">
           {product.name}
         </h3>
-        <p className="text-gray-600 font-Montserat font-normal text-[15px]">${product.price} USD</p>
+        <p className="text-gray-600 font-Montserat font-normal text-[15px]">
+          ${product.price} USD
+        </p>
         <div className="text-yellow-600 font-Avenir font-normal text-[14px]">
-          <StartsRating rating={parseFloat(popularityOutOfFive)} /> {popularityOutOfFive} / 5
+          <StartsRating rating={parseFloat(popularityOutOfFive)} />{" "}
+          {popularityOutOfFive} / 5
         </div>
         <div className="flex gap-2 my-4">
           {colorKeys.map((color, colorIndex) => (
             <div className="flex flex-col items-center" key={colorIndex}>
               <div
                 className={`w-6 h-6 rounded-full border-2 cursor-pointer flex justify-center items-center  ${
-                  selectedColor.name === color.name ? 'border-black border' : 'border-transparent'
+                  selectedColor.name === color.name
+                    ? "border-black border"
+                    : "border-transparent"
                 }`}
               >
                 <button
@@ -55,7 +59,9 @@ export default function Product({ product, index }: ProductProps) {
                 />
               </div>
               <div className="font-Avenir font-normal text-[12px]">
-                {selectedColor.description === color.description ? color.description : ''}
+                {selectedColor.description === color.description
+                  ? color.description
+                  : ""}
               </div>
             </div>
           ))}
