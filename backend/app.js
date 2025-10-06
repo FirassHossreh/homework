@@ -10,5 +10,5 @@ app.use(cors({ origin: "http://localhost:5173" }));
 app.use("/products", productsRouter);
 
 app.listen(PORT, () =>
-  console.log(`✅ Server çalışıyor: http://localhost:${PORT}`)
+  console.log(`Server çalışıyor: http://localhost:${PORT}`)
 );
