@@ -2,21 +2,19 @@ import fs from "fs";
 import path from "path";
 import axios from "axios";
 
-// 🔹 JSON dosyasını oku
 const getProductsData = () => {
   const filePath = path.join(process.cwd(), "data/products.json");
   const raw = fs.readFileSync(filePath, "utf-8");
   return JSON.parse(raw);
 };
 
-// 🔹 Gerçek zamanlı gram altın fiyatını (USD cinsinden) al
 export const getGoldPriceUSD = async () => {
   try {
     const options = {
       method: "GET",
       url: "https://www.goldapi.io/api/XAU/USD",
       headers: {
-        "x-access-token": "goldapi-q738vsmgeprkgz-io", // Senin API key
+        "x-access-token": "goldapi-q738vsmgeprkgz-io",
         "Content-Type": "application/json",
       },
     };
@@ -32,11 +30,10 @@ export const getGoldPriceUSD = async () => {
       "Altın fiyatı alınamadı, sabit değer kullanılıyor:",
       err.message
     );
-    return 70; // fallback USD/gram
+    return 70;
   }
 };
 
-// 🔹 Ürünleri getir
 export const getProducts = async (req, res) => {
   try {
     const products = getProductsData();
@@ -44,16 +41,14 @@ export const getProducts = async (req, res) => {
 
     const { minPrice, maxPrice, minPopularity, maxPopularity } = req.query;
 
-    // Her ürün için fiyat hesapla
     let calculated = products.map(p => {
       const price = (p.popularityScore + 1) * p.weight * goldPrice;
       return {
         ...p,
-        price: parseFloat(price.toFixed(2)), // USD
+        price: parseFloat(price.toFixed(2)),
       };
     });
 
-    // 🔹 Filtreleme
     if (minPrice || maxPrice) {
       calculated = calculated.filter(
         p =>

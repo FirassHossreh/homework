@@ -4,8 +4,8 @@ import ProductSlider from "./components/product-swiper";
 import FilterBar from "./components/filter-bar";
 import axios from "axios";
 import type { ProductType } from "./types/product";
-import { Spin } from "antd"; // Ant Design Spin import
-import "antd/dist/reset.css"; // Ant Design stil dosyası
+import { Spin } from "antd";
+import "antd/dist/reset.css";
 
 function App() {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -16,10 +16,10 @@ function App() {
     minPopularity: "",
     maxPopularity: "",
   });
-  const [loading, setLoading] = useState(false); // yüklenme durumu
+  const [loading, setLoading] = useState(false);
 
   const getProducts = async (query = "") => {
-    setLoading(true); // yükleme başlasın
+    setLoading(true);
     try {
       const res = await axios.get(`http://localhost:3001/products${query}`);
       setProducts(res.data.products);
@@ -27,7 +27,7 @@ function App() {
     } catch (err) {
       console.error(err);
     } finally {
-      setLoading(false); // yükleme bitti
+      setLoading(false);
     }
   };
 

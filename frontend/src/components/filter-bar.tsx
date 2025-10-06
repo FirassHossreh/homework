@@ -1,5 +1,3 @@
-import React from "react";
-
 type FilterBarProps = {
   filters: {
     minPrice: string;
