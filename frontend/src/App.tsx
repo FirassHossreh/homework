@@ -21,7 +21,9 @@ function App() {
   const getProducts = async (query = "") => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:3001/products${query}`);
+      const res = await axios.get(
+        `https://homework-pt46.onrender.com/products${query}`
+      );
       setProducts(res.data.products);
       setGoldPrice(parseFloat(res.data.goldPriceUSD));
     } catch (err) {

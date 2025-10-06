@@ -3,7 +3,7 @@ import cors from "cors";
 import productsRouter from "./routes/products.js";
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors({ origin: "http://localhost:5173" }));
 
